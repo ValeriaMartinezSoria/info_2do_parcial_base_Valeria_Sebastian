@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://imuf4cf0yqn1"]
+
+[ext_resource type="Texture2D" uid="uid://cdunkljd6up72" path="res://assets/bottom_ui.png" id="1_y4e6s"]
+[ext_resource type="Script" uid="uid://4noxyxw1rr5y" path="res://scripts/bottom_ui.gd" id="2_epm3a"]
+
+[sub_resource type="FontVariation" id="FontVariation_7nsdi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_evwcg"]
+font = SubResource("FontVariation_7nsdi")
+font_size = 55
+font_color = Color(0, 0, 0, 1)
+shadow_color = Color(0.144944, 0.129965, 0.0692684, 0)
+
+[node name="bottom_ui" type="TextureRect"]
+anchors_preset = -1
+anchor_right = 6.106
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_right = -2941.06
+offset_bottom = -834.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_y4e6s")
+script = ExtResource("2_epm3a")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.988
+anchor_bottom = 0.958
+offset_right = -0.0880127
+offset_bottom = 0.0639954
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+modulate = Color(0.00156786, 0.00220973, 1.88011e-10, 1)
+self_modulate = Color(0.125775, 0.107723, 0.0263252, 1)
+custom_minimum_size = Vector2(575, 172)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_evwcg")
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 116.002
+offset_top = 459.0
+offset_right = 437.002
+offset_bottom = 644.0
+text = "REINCIAR"

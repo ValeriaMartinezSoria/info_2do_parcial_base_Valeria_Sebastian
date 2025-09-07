@@ -1,18 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://bt33j5dwxano3"]
+[gd_scene load_steps=9 format=3 uid="uid://bt33j5dwxano3"]
 
 [ext_resource type="Texture2D" uid="uid://bacqucona7fm3" path="res://assets/top_ui.png" id="1_j7odh"]
-[ext_resource type="Script" uid="uid://pvllt7hbni2e" path="res://scripts/top_ui.gd" id="2_0qkha"]
-[ext_resource type="FontFile" uid="uid://b25431rxog83j" path="res://assets/fonts/Kenney Blocks.ttf" id="2_pei76"]
+[ext_resource type="Script" uid="uid://b5e44inmkr6f4" path="res://scripts/top_ui.gd" id="2_0qkha"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_yrpvj"]
-font = ExtResource("2_pei76")
-font_size = 24
+[sub_resource type="FontVariation" id="FontVariation_sh3ln"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0ntmh"]
+font = SubResource("FontVariation_sh3ln")
+font_size = 23
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_sh3ln"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8bjlm"]
-font = ExtResource("2_pei76")
+font = SubResource("SystemFont_sh3ln")
 font_size = 60
+font_color = Color(0.00377981, 0.00135908, 3.76021e-10, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_ibuym"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xoi7l"]
+font = SubResource("SystemFont_ibuym")
+font_size = 22
+font_color = Color(0, 0, 0, 1)
 
 [node name="top_ui" type="TextureRect"]
+modulate = Color(0, 0.842801, 0.88118, 1)
 offset_right = 576.0
 offset_bottom = 192.0
 texture = ExtResource("1_j7odh")
@@ -39,8 +52,9 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
-text = "000"
-label_settings = SubResource("LabelSettings_yrpvj")
+text = "Puntos:
+000"
+label_settings = SubResource("LabelSettings_0ntmh")
 horizontal_alignment = 1
 
 [node name="counter_label" type="Label" parent="MarginContainer/HBoxContainer"]
@@ -50,8 +64,13 @@ size_flags_vertical = 5
 text = "00"
 label_settings = SubResource("LabelSettings_8bjlm")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="goal_label" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(158, 124)
+layout_direction = 2
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 5
+text = "Meta:
+000"
+label_settings = SubResource("LabelSettings_xoi7l")
+horizontal_alignment = 1
