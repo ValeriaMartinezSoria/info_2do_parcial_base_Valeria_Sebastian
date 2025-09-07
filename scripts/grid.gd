@@ -1012,7 +1012,8 @@ func process_match(start_x: int, start_y: int, end_x: int, end_y: int, color: St
 	if matched_pieces.size() == 5:
 		matched_five.append([start_x, start_y, all_pieces[start_x][start_y], true])
 	elif matched_pieces.size() == 4:
-		matched_four.append([start_x, start_y, all_pieces[start_x][start_y], false])
+		var is_vertical = end_x == start_x  # Si x es igual, el match es vertical
+		matched_four.append([start_x, start_y, all_pieces[start_x][start_y], is_vertical])
 	
 	return true
 
