@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://cruh8bbcfvyvr"]
+
+[ext_resource type="Texture2D" uid="uid://brp4euwugc18f" path="res://assets/background.png" id="1_blg2x"]
+[ext_resource type="PackedScene" uid="uid://bt33j5dwxano3" path="res://scenes/top_ui.tscn" id="2_wrbvl"]
+[ext_resource type="PackedScene" uid="uid://imuf4cf0yqn1" path="res://scenes/bottom_ui.tscn" id="3_js5d8"]
+[ext_resource type="Script" uid="uid://dgai2ewn6ayni" path="res://scripts/grid.gd" id="4_4jr62"]
+[ext_resource type="Script" uid="uid://d0snngld81y12" path="res://scenes/control.gd" id="5_iywne"]
+
+[node name="Game" type="Node2D"]
+
+[node name="background" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -8.0
+offset_right = 568.0
+offset_bottom = 1024.0
+texture = ExtResource("1_blg2x")
+
+[node name="top_ui" parent="." instance=ExtResource("2_wrbvl")]
+
+[node name="bottom_ui" parent="." instance=ExtResource("3_js5d8")]
+offset_left = -4.0
+offset_top = 920.0
+offset_right = 572.0
+offset_bottom = 1012.0
+
+[node name="Control" type="Control" parent="bottom_ui"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_top = -920.0
+offset_right = 44.0
+offset_bottom = -880.0
+script = ExtResource("5_iywne")
+
+[node name="RetryButton" type="Button" parent="bottom_ui/Control"]
+visible = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 465.0
+offset_right = 145.0
+offset_bottom = 496.0
+scale = Vector2(4, 4)
+text = "REINICIAR NIVEL"
+
+[node name="grid" type="Node2D" parent="."]
+script = ExtResource("4_4jr62")
+width = 8
+height = 10
+x_start = 64
+y_start = 800
+offset = 64
+y_offset = 2
+
+[node name="destroy_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="collapse_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="refill_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="next_level" type="Timer" parent="."]
+
+[node name="second_timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="bottom_ui/Control/RetryButton" to="bottom_ui/Control" method="_on_retry_button_pressed"]
+[connection signal="timeout" from="destroy_timer" to="grid" method="_on_destroy_timer_timeout"]
+[connection signal="timeout" from="collapse_timer" to="grid" method="_on_collapse_timer_timeout"]
+[connection signal="timeout" from="refill_timer" to="grid" method="_on_refill_timer_timeout"]
+[connection signal="timeout" from="next_level" to="grid" method="_on_next_level_timeout"]
+[connection signal="timeout" from="second_timer" to="grid" method="_on_second_timer_timeout"]

@@ -83,6 +83,7 @@ var time_timer
 var all_pieces = []
 var moves
 var time
+var first_match = true  
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -193,6 +194,7 @@ func touch_input():
 
 func swap_pieces(column, row, direction: Vector2):
 	is_move = true
+	first_match = true  
 	var first_piece = all_pieces[column][row]
 	var other_piece = all_pieces[column + direction.x][row + direction.y]
 	if first_piece == null or other_piece == null:
@@ -241,8 +243,10 @@ func _process(delta):
 	if state == MOVE:
 		if is_move and match_count>0:
 			if level == 1:
-				get_parent().get_node("top_ui").decrease_count()
-				moves-=1
+				if first_match:
+					get_parent().get_node("top_ui").decrease_count()
+					moves-=1
+					first_match = false
 				get_parent().get_node("top_ui").increment_counter(10 * match_count)
 				score+=10*match_count
 				if(moves <= 0 and score < score_goal):
@@ -862,7 +866,7 @@ func find_matches():
 							this_is_row_2(i,j)
 
 				if i < width - 2 and j < height - 2:
-					if all_pieces[i][j + 1] != null and all_pieces[i + 1][j] != null and all_pieces[i + 2][j] != null and all_pieces[i][j + 2] != null:
+					if all_pieces[i][j + 1] != null and all_pieces[i + 1][j] != null and all_pieces[i + 2][j].color == current_color and all_pieces[i][j + 2] != null:
 						if all_pieces[i][j + 1].color == current_color and all_pieces[i + 1][j].color == current_color and all_pieces[i + 2][j].color == current_color and all_pieces[i][j + 2].color == current_color and not all_pieces[i][j].matched and not all_pieces[i+1][j].matched and not all_pieces[i+2][j].matched and not all_pieces[i][j+1].matched and not all_pieces[i][j+2].matched:
 							matched_all3(i,j)
 							last_all3(i,j)
